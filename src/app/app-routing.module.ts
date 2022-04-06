@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from './components/search.component';
+import { SuiviReparateurComponent } from './components/suivi-reparateur.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { IsSignedInGuard } from './is-signed-in.guard';
 import { LoginComponent } from './pages/login.component';
@@ -17,6 +18,8 @@ const routes: Routes = [
     children: [
       { path: '', component: WelcomeComponent },
       { path: 'search', component: SearchComponent },
+      { path: 'suivi/reparateur/:id', component: SuiviReparateurComponent }
+
     ]
   },
   { path: '**', component: NotFoundComponent }

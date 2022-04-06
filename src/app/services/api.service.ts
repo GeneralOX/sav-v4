@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 export class ApiService {
     apiUrl = "http://127.0.0.1:3000/api";
     constructor(private http: HttpClient) { }
+
+    // AUTH
     login(data: any) {
         return this.http.post(`${this.apiUrl}/login`, data);
     }
@@ -12,6 +14,7 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/register`, data);
     }
 
+    // Search
     searshForIMEI(_imei: String) {
         return this.http.get(`${this.apiUrl}/getByImei/${_imei}`);
     }
@@ -19,4 +22,8 @@ export class ApiService {
         return this.http.post(`${this.apiUrl}/createIntervention/${_imei}`, data);
     }
 
+    // SUIVI REPA
+    getAllInvoice() {
+        return this.http.get(`${this.apiUrl}/interventions`);
+    }
 }

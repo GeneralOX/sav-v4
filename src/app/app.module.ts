@@ -14,10 +14,12 @@ import { LoginComponent } from './pages/login.component';
 import { SearchComponent } from './components/search.component';
 import { MainComponent } from './pages/main.component';
 import { NotFoundComponent } from './pages/notfound.component';
+import { SuiviReparateurComponent } from './components/suivi-reparateur.component';
 
 @NgModule({
   declarations: [
-    AppComponent, SearchComponent, LoginComponent, MainComponent, NotFoundComponent
+    AppComponent, SearchComponent, LoginComponent, MainComponent, NotFoundComponent,
+    SuiviReparateurComponent,
   ],
   imports: [
     CommonModule,

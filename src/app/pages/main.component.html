@@ -9,7 +9,38 @@
                     <div style="height: 25px;"></div>
                     <ul>
                         <li class="sidebarLink relative px-6 py-3" *ngFor="let item of navItems">
-                            <div [routerLink]="[item.link]" [routerLinkActive]="['sidebarLinkActive']">
+                            <div *ngIf="item.haveSub">
+                                <button
+                                    class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 "
+                                    (click)="item.subOpen = !item.subOpen" aria-haspopup="true">
+                                    <span class="inline-flex items-center">
+                                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                            stroke="currentColor">
+                                            <path
+                                                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-4" style="font-size: 12px;">{{ item.name }}</span>
+                                    </span>
+                                    <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <ul *ngIf="item.subOpen"
+                                    class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
+                                    aria-label="submenu">
+                                    <li *ngFor="let ie of item.sub"
+                                        class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 ">
+                                        <a class="w-full" [routerLink]="ie.link" 
+                                            [routerLinkActive]="['sidebarLinkActive']">{{ ie.name }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div *ngIf="!item.haveSub" [routerLink]="[item.link]"
+                                [routerLinkActive]="['sidebarLinkActive']">
                                 <span
                                     class="activeSpan absolute inset-y-0 left-0 w-1 bg-lime-600 rounded-tr-lg rounded-br-lg"></span>
                                 <a
@@ -28,8 +59,7 @@
                         </li>
                     </ul>
                     <div class="px-6 my-6">
-                        <button
-                        (click)="logout()"
+                        <button (click)="logout()"
                             class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lime-600 border border-transparent rounded-lg active:bg-lime-600 hover:bg-lime-700 focus:outline-none">
                             Logout
                         </button>
@@ -57,8 +87,8 @@
                     <ul class="flex items-center flex-shrink-0 space-x-6">
                         <!-- Profile menu -->
                         <li class="relative">
-                            <button class="align-middle rounded-full focus:outline-none"
-                                click="toggleProfileMenu" aria-label="Account" aria-haspopup="true">
+                            <button class="align-middle rounded-full focus:outline-none" click="toggleProfileMenu"
+                                aria-label="Account" aria-haspopup="true">
                                 <img class="object-cover w-8 h-8 rounded-full"
                                     src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
                                     alt="" aria-hidden="true" />
