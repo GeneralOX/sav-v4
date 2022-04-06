@@ -33,13 +33,13 @@
     </table>
 
     <div class="flex justify-end">
-        <button
+        <button (click)="decharge()"
             class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-700 focus:outline-none">
             Generate decharge</button>
     </div>
 </div>
 
-<div class="min-w-0 m-3 p-4 bg-white rounded-lg shadow-xs">
+<div class="border-gray-200 border p-4 bg-white my-2">
     <h3>selectionner un reparateur externe</h3>
     <table class="w-full border-2 m-2 text-center">
         <tr>
@@ -52,24 +52,15 @@
             <th class="border-2"><b> Etat Fiche</b></th>
             <th class="border-2"><b> Observations</b></th>
         </tr>
-        <ng-template *ngFor="let item of invoiceList">
-            <tr *ngIf="item.selected == true">
-                <td class="border-2 text-sm p-1">{{ item.id }}</td>
-                <td class="border-2 text-sm p-1"> {{ item.marque }} </td>
-                <td class="border-2 text-sm p-1"> {{ item.model }} </td>
-                <td class="border-2 text-sm p-1"> {{ item.imei }} </td>
-                <td class="border-2 text-sm p-1"> N'serie batterie </td>
-                <td class="border-2 text-sm p-1"> {{ selectedSuplier }}</td>
-                <td class="border-2 text-sm p-1"> Etat Fiche</td>
-                <td class="border-2 text-sm p-1"> Observations</td>
-            </tr>
-        </ng-template>
-
+        <tr *ngFor="let item of dechargeItems">
+            <td class="border-2 text-sm p-1">{{ item.id }}</td>
+            <td class="border-2 text-sm p-1"> {{ item.marque }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.model }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.imei }} </td>
+            <td class="border-2 text-sm p-1"> N'serie batterie </td>
+            <td class="border-2 text-sm p-1"> {{ selectedSuplier }}</td>
+            <td class="border-2 text-sm p-1"> Etat Fiche</td>
+            <td class="border-2 text-sm p-1"> Observations</td>
+        </tr>
     </table>
-
-    <div class="flex justify-end">
-        <button
-            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-700 focus:outline-none">
-            Generate decharge</button>
-    </div>
 </div>
