@@ -83,7 +83,7 @@ export class SearchComponent {
             insured: result.insured,
             guarantee: result.guarantee,
             rest_guarantee: duration,
-            client_id: result.client_id
+            client_id: result.client_id,
           };
           this.workflowFile.client = {
             nom: result.Nom,
@@ -93,6 +93,8 @@ export class SearchComponent {
             numCinPassport: result.cin_passport,
             email: result.email
           }
+          this.workflowFile.marque = result.marque;
+          this.workflowFile.model = result.model;
           this.workflowFile.imei = this.myDevice.imei;
           this.deviceRequstInfo.isFound = true;
           this.createWorkflowFile = false;
@@ -154,8 +156,10 @@ export class SearchComponent {
       })
       .subscribe((data: any) => {
         console.log(data);
+        this.invoice.id = data.insertId;
       });
 
+    this.createWorkflowFile = false;
     this.invoice.shown = true;
     this.invoice.date = this.dateFormat(new Date());
   }
@@ -173,7 +177,7 @@ export class SearchComponent {
     setTimeout(() => {
       mywindow.print();
       mywindow.close();
-    }, 3000);
+    }, 1000);
 
 
     return true;

@@ -28,7 +28,7 @@
 
                 <span>
                     <button (click)="searchForIMEI()"
-                        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lime-700 border border-transparent rounded-lg active:bg-lime-600 focus:outline-none focus:shadow-outline-lime">
+                        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-lime-700 border border-transparent rounded-lg active:bg-lime-600 focus:outline-none">
                         <span>Rechercher</span>
                         <svg class="w-4 h-4 ml-2 -mr-1" fill="currentColor" aria-hidden="true" viewBox="0 0 20 20">
                             <path
@@ -323,89 +323,97 @@
             </div>
 
             <!-- PDF File -->
-            <div id="invoice" class="border-gray-200 border p-4 bg-white my-5">
-                <div class="absolute">
-                    <img src="/assets/logo.png" width="150" height="64" />
+            <div *ngIf="invoice.shown">
+                <div id="invoice" class="border-gray-200 border p-4 bg-white my-2">
+                    <div class="absolute">
+                        <img src="/assets/logo.png" width="150" height="64" />
+                    </div>
+
+                    <h2 class="text-center h-16 flex justify-center items-center mb-4"
+                        style="font-weight: bold;font-size: 24px;">
+                        Fichie d'intervention
+                    </h2>
+
+                    <div class="flex justify-between">
+                        <p><b>Num Recu: </b> {{ invoice.id }} </p>
+                        <p>
+                            <b>Date: </b> {{ invoice.date }} <br />
+                            <b>Boutique: </b> {{ invoice.shop }}
+                        </p>
+                    </div>
+                    <h3 class="my-3 text-xl"><b>Informations Client</b></h3>
+                    <table class="w-full">
+                        <tr>
+                            <td><b>Nom: </b> {{workflowFile.client.nom}} </td>
+                            <td><b>Num Tel 1: </b> {{workflowFile.client.numTel1}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Prenom: </b> {{workflowFile.client.prenom}} </td>
+                            <td><b>Num Tel 2: </b> {{workflowFile.client.numTel2}} </td>
+
+                        </tr>
+                        <tr>
+                            <td><b>Num Cin Passeport: </b> {{workflowFile.client.numCinPassport}} </td>
+                            <td><b>Email: </b> {{workflowFile.client.email}} </td>
+                        </tr>
+                    </table>
+                    <h3 class="my-3  text-xl"><b>Material</b></h3>
+                    <table class="w-full">
+                        <tr>
+                            <td><b>Date d'achat: </b> {{myDevice.purchase_date}}</td>
+                            <td><b>Sous garantie: </b> {{myDevice.rest_guarantee > 1 ? 'Oui' : 'Non'}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Marque: </b> {{workflowFile.marque}}</td>
+                            <td><b>Modele: </b> {{workflowFile.model}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Num serie/ IMEI: </b> {{workflowFile.imei}}</td>
+                            <td><b>Etat Terminal: </b> {{workflowFile.status}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Num serie Batterie: </b> {{workflowFile.battery}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>type de Panne: </b> {{workflowFile.Panne.join(', ')}}</td>
+                            <td><b>Accessoires: </b> {{workflowFile.Accessoires.join(", ")}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Code de produit: </b> {{workflowFile.imei}}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Description de panne: </b> {{workflowFile.Description}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Produit en service: </b>
+                                <input type="checkbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><br /></td>
+                        </tr>
+                    </table>
+                    <div class="flex justify-between">
+                        <fieldset class="border-2" style="width: 250px;">
+                            <legend>Signature Client</legend>
+                            <div class="h-9"></div>
+                        </fieldset>
+
+                        <fieldset class="border-2" style="width: 250px;">
+                            <legend>Signature Responsable</legend>
+                            <div class="h-9"></div>
+                        </fieldset>
+                    </div>
                 </div>
-
-                <h2 class="text-center h-16 flex justify-center items-center mb-4"
-                    style="font-weight: bold;font-size: 24px;">
-                    Fichie d'intervention
-                </h2>
-
-                <div class="flex justify-between">
-                    <p><b>Num Recu: </b> {{ invoice.id }} </p>
-                    <p>
-                        <b>Date: </b> {{ invoice.date }} <br />
-                        <b>Boutique: </b> {{ invoice.shop }}
-                    </p>
-                </div>
-                <h3 class="my-3 text-xl"><b>Informations Client</b></h3>
-                <table class="w-full">
-                    <tr>
-                        <td><b>Nom: </b> {{workflowFile.client.nom}} </td>
-                        <td><b>Num Tel 1: </b> {{workflowFile.client.numTel1}} </td>
-                    </tr>
-                    <tr>
-                        <td><b>Prenom: </b> {{workflowFile.client.prenom}} </td>
-                        <td><b>Num Tel 2: </b> {{workflowFile.client.numTel2}} </td>
-
-                    </tr>
-                    <tr>
-                        <td><b>Num Cin Passeport: </b> {{workflowFile.client.numCinPassport}} </td>
-                        <td><b>Email: </b> {{workflowFile.client.email}} </td>
-                    </tr>
-                </table>
-                <h3 class="my-3  text-xl"><b>Material</b></h3>
-                <table class="w-full">
-                    <tr>
-                        <td><b>Date d'achat: </b> {{myDevice.purchase_date}}</td>
-                        <td><b>Sous garantie: </b> {{myDevice.rest_guarantee > 1 ? 'Oui' : 'Non'}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Marque: </b> {{workflowFile.marque}}</td>
-                        <td><b>Modele: </b> {{workflowFile.model}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Num serie/ IMEI: </b> {{workflowFile.imei}}</td>
-                        <td><b>Etat Terminal: </b> {{workflowFile.status}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Num serie Batterie: </b> {{workflowFile.battery}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>type de Panne: </b> {{workflowFile.Panne.join(', ')}}</td>
-                        <td><b>Accessoires: </b> {{workflowFile.Accessoires.join(", ")}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Code de produit: </b> {{workflowFile.imei}}</td>
-                    </tr>
-                    <tr>
-                        <td><b>Description de panne: </b> {{workflowFile.Description}}</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>Produit en service: </b>
-                            <input type="checkbox" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><br /></td>
-                    </tr>
-                </table>
-                <div class="flex justify-between">
-                    <fieldset class="border-2" style="width: 250px;">
-                        <legend>Signature Client</legend>
-                        <div class="h-9"></div>
-                    </fieldset>
-
-                    <fieldset class="border-2" style="width: 250px;">
-                        <legend>Signature Responsable</legend>
-                        <div class="h-9"></div>
-                    </fieldset>
+                <div class="flex justify-center mb-20">
+                    <button
+                        class="m-1 flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-700 border border-transparent rounded-lg active:bg-blue-600 focus:outline-none"
+                        (click)="PrintElem()">imprimer fiche / Export PDF</button>
+                  
                 </div>
             </div>
-            <button (click)="PrintElem()">Print</button>
+
         </div>
     </main>
 </div>
