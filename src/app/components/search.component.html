@@ -66,7 +66,7 @@
                     </p>
                     <p class="text-gray-600 ">
                         <b>Nombre de retour SAV: </b>
-                        <span class="text-gray-800">{{myDevice.nb_return_sav }}</span>
+                        <span class="text-gray-800">{{myDevice.nb_retour_sav }}</span>
                     </p>
                     <p class="text-gray-600 ">
                         <b>Terminal Assuré: </b>
@@ -96,7 +96,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600 bg-gray-300 border-gray-500 border-2"
-                                [value]="[workflowFile.client.nom]" readonly>
+                                [value]="[myDevice.client.firstName]" readonly>
                         </td>
                         <td>
                             <span class="text-gray-700 inline m-1">Num Tel 1:</span>
@@ -105,7 +105,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600 bg-gray-300 border-gray-500 border-2"
-                                [value]="[workflowFile.client.numTel1]" readonly>
+                                [value]="[myDevice.client.phoneNumber1]" readonly>
                         </td>
                         <td>
                             <span class="text-gray-700 inline m-1">Num Cin Passeport:</span>
@@ -114,7 +114,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600 bg-gray-300 border-gray-500 border-2"
-                                [value]="[workflowFile.client.numCinPassport]" readonly>
+                                [value]="[myDevice.client.cin]" readonly>
                         </td>
 
                     </tr>
@@ -130,7 +130,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600 bg-gray-300 border-gray-500 border-2"
-                                [value]="[workflowFile.client.prenom]" readonly>
+                                [value]="[myDevice.client.lastName]" readonly>
 
                         </td>
                         <td>
@@ -140,7 +140,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600  border-gray-500 border-2"
-                                [value]="[workflowFile.client.numTel2]" readonly>
+                                [value]="[myDevice.client.phoneNumber2]" readonly>
                         </td>
                         <td>
                             <span class="text-gray-700 inline m-1">email:</span>
@@ -149,7 +149,7 @@
                         <td>
                             <input style="padding: 5px 10px;border-radius: 10px;"
                                 class="block text-gray-600  border-gray-500 border-2"
-                                [value]="[workflowFile.client.email]" readonly>
+                                [value]="[myDevice.client.email]" readonly>
                         </td>
 
                     </tr>
@@ -163,9 +163,9 @@
                 <table [width]="['100%']">
                     <tr>
                         <td><b>Marque:</b></td>
-                        <td>{{ workflowFile.marque}}</td>
+                        <td>{{ myDevice.brand}}</td>
                         <td><b>Num de serie / IMEI: </b></td>
-                        <td>{{ workflowFile.imei }}</td>
+                        <td>{{ myDevice.imei }}</td>
                         <td><b>Etat Terminal:</b></td>
                         <td>
                             <select class="border-2 p-1">
@@ -175,7 +175,7 @@
                     </tr>
                     <tr>
                         <td><b>Modéle:</b></td>
-                        <td>{{ workflowFile.model}}</td>
+                        <td>{{ myDevice.model}}</td>
                         <td><b>Batterie: </b></td>
                         <td>
                             <label class="inline-flex items-center ">
@@ -344,17 +344,17 @@
                     <h3 class="my-3 text-xl"><b>Informations Client</b></h3>
                     <table class="w-full">
                         <tr>
-                            <td><b>Nom: </b> {{workflowFile.client.nom}} </td>
-                            <td><b>Num Tel 1: </b> {{workflowFile.client.numTel1}} </td>
+                            <td><b>Nom: </b> {{myDevice.client.firstName}} </td>
+                            <td><b>Num Tel 1: </b> {{myDevice.client.phoneNumber1}} </td>
                         </tr>
                         <tr>
-                            <td><b>Prenom: </b> {{workflowFile.client.prenom}} </td>
-                            <td><b>Num Tel 2: </b> {{workflowFile.client.numTel2}} </td>
+                            <td><b>Prenom: </b> {{myDevice.client.lastName}} </td>
+                            <td><b>Num Tel 2: </b> {{myDevice.client.phoneNumber2}} </td>
 
                         </tr>
                         <tr>
-                            <td><b>Num Cin Passeport: </b> {{workflowFile.client.numCinPassport}} </td>
-                            <td><b>Email: </b> {{workflowFile.client.email}} </td>
+                            <td><b>Num Cin Passeport: </b> {{myDevice.client.cin}} </td>
+                            <td><b>Email: </b> {{myDevice.client.email}} </td>
                         </tr>
                     </table>
                     <h3 class="my-3  text-xl"><b>Material</b></h3>
@@ -364,22 +364,25 @@
                             <td><b>Sous garantie: </b> {{myDevice.rest_guarantee > 1 ? 'Oui' : 'Non'}}</td>
                         </tr>
                         <tr>
-                            <td><b>Marque: </b> {{workflowFile.marque}}</td>
-                            <td><b>Modele: </b> {{workflowFile.model}}</td>
+                            <td><b>Marque: </b> {{myDevice.brand}}</td>
+                            <td><b>Modele: </b> {{myDevice.model}}</td>
                         </tr>
                         <tr>
-                            <td><b>Num serie/ IMEI: </b> {{workflowFile.imei}}</td>
+                            <td><b>Num serie/ IMEI: </b> {{myDevice.imei}}</td>
                             <td><b>Etat Terminal: </b> {{workflowFile.status}}</td>
                         </tr>
                         <tr>
-                            <td><b>Num serie Batterie: </b> {{workflowFile.battery}}</td>
+                            <td><b>Num serie Batterie: </b> 
+                               <span *ngIf="workflowFile.battery == 1"> {{myDevice.batteryId}}</span>
+                               <span *ngIf="workflowFile.battery == 0">0</span> 
+                            </td>
                         </tr>
                         <tr>
                             <td><b>type de Panne: </b> {{workflowFile.Panne.join(', ')}}</td>
                             <td><b>Accessoires: </b> {{workflowFile.Accessoires.join(", ")}}</td>
                         </tr>
                         <tr>
-                            <td><b>Code de produit: </b> {{workflowFile.imei}}</td>
+                            <td><b>Code de produit: </b> {{myDevice.imei}}</td>
                         </tr>
                         <tr>
                             <td><b>Description de panne: </b> {{workflowFile.Description}}</td>

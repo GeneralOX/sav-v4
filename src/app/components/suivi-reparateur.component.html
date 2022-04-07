@@ -22,13 +22,13 @@
             <td class="border-2 p-1"> <input type="checkbox" [checked]="item.selected" [(ngModel)]="item.selected" />
             </td>
             <td class="border-2 text-sm p-1">{{ item.id }}</td>
-            <td class="border-2 text-sm p-1"> {{ item.marque }} </td>
-            <td class="border-2 text-sm p-1"> {{ item.model }} </td>
-            <td class="border-2 text-sm p-1"> {{ item.imei }} </td>
-            <td class="border-2 text-sm p-1"> N'serie batterie </td>
-            <td class="border-2 text-sm p-1"> {{ selectedSuplier }}</td>
-            <td class="border-2 text-sm p-1"> Etat Fiche</td>
-            <td class="border-2 text-sm p-1"> Observations</td>
+            <td class="border-2 text-sm p-1"> {{ item.device.brand }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.model }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.imei }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.batteryId }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.supplier }}</td>
+            <td class="border-2 text-sm p-1"> NaN</td>
+            <td class="border-2 text-sm p-1"> {{ item.status }}</td>
         </tr>
     </table>
 
@@ -39,10 +39,25 @@
     </div>
 </div>
 
-<div class="border-gray-200 border p-4 bg-white my-2">
-    <h3>selectionner un reparateur externe</h3>
+<div class="border-gray-200 border p-4 bg-white m-3">
+    <div class="absolute">
+        <img src="/assets/logo.png" width="150" height="64" />
+    </div>
+
+    <h2 class="text-center h-16 flex justify-center items-center mb-4" style="font-weight: bold;font-size: 24px;">
+        Decharge d'envoi <b class="uppercase"> {{selectedSuplier}}</b>
+    </h2>
+
+    <div class="flex justify-between mb-3">
+        <div>
+            <p><b>Ref decharge: </b>{{ invoice.id }}</p>
+            <p><b>Depart: </b> {{ invoice.shop }}</p>
+            <p><b>Destination: </b> {{selectedSuplier}} </p>
+        </div>
+        <p>Date: {{ invoice.date }} </p>
+    </div>
     <table class="w-full border-2 m-2 text-center">
-        <tr>
+        <tr class="bg-green-400">
             <th class="border-2"><b> Num Fiche </b></th>
             <th class="border-2"><b> Marque </b></th>
             <th class="border-2"><b> Modele </b></th>
@@ -54,13 +69,13 @@
         </tr>
         <tr *ngFor="let item of dechargeItems">
             <td class="border-2 text-sm p-1">{{ item.id }}</td>
-            <td class="border-2 text-sm p-1"> {{ item.marque }} </td>
-            <td class="border-2 text-sm p-1"> {{ item.model }} </td>
-            <td class="border-2 text-sm p-1"> {{ item.imei }} </td>
-            <td class="border-2 text-sm p-1"> N'serie batterie </td>
-            <td class="border-2 text-sm p-1"> {{ selectedSuplier }}</td>
-            <td class="border-2 text-sm p-1"> Etat Fiche</td>
-            <td class="border-2 text-sm p-1"> Observations</td>
+            <td class="border-2 text-sm p-1"> {{ item.device.brand }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.model }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.imei }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.batteryId }} </td>
+            <td class="border-2 text-sm p-1"> {{ item.device.supplier }}</td>
+            <td class="border-2 text-sm p-1"> NaN</td>
+            <td class="border-2 text-sm p-1"> {{ item.status }}</td>
         </tr>
     </table>
 </div>

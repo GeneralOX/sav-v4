@@ -8,22 +8,22 @@ export class ApiService {
 
     // AUTH
     login(data: any) {
-        return this.http.post(`${this.apiUrl}/login`, data);
+        return this.http.post(`${this.apiUrl}/auth/login`, data);
     }
     register(data: any) {
-        return this.http.post(`${this.apiUrl}/register`, data);
+        return this.http.post(`${this.apiUrl}/auth/register`, data);
     }
 
     // Search
     searshForIMEI(_imei: String) {
-        return this.http.get(`${this.apiUrl}/getByImei/${_imei}`);
+        return this.http.get(`${this.apiUrl}/device/search?imei=${_imei}`);
     }
-    createFicheIntervention(_imei: String, data: any) {
-        return this.http.post(`${this.apiUrl}/createIntervention/${_imei}`, data);
+    createFicheIntervention(data: any) {
+        return this.http.post(`${this.apiUrl}/intervention/create`, data);
     }
 
     // SUIVI REPA
-    getAllInvoice() {
-        return this.http.get(`${this.apiUrl}/interventions`);
+    getAllInvoice(data: any) {
+        return this.http.post(`${this.apiUrl}/intervention/withstatus`, data);
     }
 }

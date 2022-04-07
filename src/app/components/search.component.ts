@@ -14,30 +14,30 @@ export class SearchComponent {
     msg: ""
   };
   myDevice: any = {
-    imei: '',
-    status: '',
-    purchase_date: '22/01/2020',
-    nb_return_sav: '',
-    insured: '',
-    guarantee: '',
-    rest_guarantee: 1,
-    client_id: '',
+    "imei": "001122",
+    "clientid": "12345678",
+    "brand": "iphone",
+    "model": "6s blanc",
+    "status": "vendu",
+    "purchase_date": "2022-04-01T01:05:08.000Z",
+    "guarantee": 1,
+    "nb_retour_sav": 0,
+    "insured": 1,
+    "batteryId": "1254286529664752",
+    "supplier": "ONE TEL",
+    "client": {
+      "cin": "12345678",
+      "firstName": "rym",
+      "lastName": "rym",
+      "phoneNumber1": "50015001",
+      "phoneNumber2": null,
+      "email": "rym.rym@gmail.com"
+    },
   };
 
   createWorkflowFile = false;
   workflowFile: any = {
-    client: {
-      nom: "ladhari",
-      prenom: "rym",
-      numTel1: "50015001",
-      numTel2: "",
-      numCinPassport: "08439671",
-      email: ""
-    },
-    marque: "Portable Samsung",
-    model: "Samsung j2 black",
     battery: 1,
-    imei: "35798456128315",
     status: "Bon etat",
     Accessoires: [],
     Panne: [],
@@ -68,40 +68,23 @@ export class SearchComponent {
     this.deviceRequstInfo.isSearch = true;
     if (this.myDevice.imei != '')
       this.apiService.searshForIMEI(this.myDevice.imei).pipe().subscribe((data: any) => {
-        if ((data as Array<any>).length > 0) {
-          var result = (data as Array<any>)[0];
+        if (!data.error) {
+          this.myDevice = data.device;
 
-          var _purAt = new Date(result.purchase_date);
-          var v1 = new Date(`${_purAt.getMonth() + 1}/${_purAt.getDate()}/${_purAt.getFullYear() + 1}`);
-          var v2 = new Date();
-          var duration = Math.round((v1.valueOf() - v2.valueOf()) / (1000 * 60 * 60 * 24));
-          this.myDevice = {
-            imei: result.imei,
-            status: result.status,
-            purchase_date: (`${_purAt.getFullYear()}-${_purAt.getMonth() + 1}-${_purAt.getDate()}`),
-            nb_return_sav: result.nb_return_sav,
-            insured: result.insured,
-            guarantee: result.guarantee,
-            rest_guarantee: duration,
-            client_id: result.client_id,
-          };
-          this.workflowFile.client = {
-            nom: result.Nom,
-            prenom: result.Prenom,
-            numTel1: result.num_tel1,
-            numTel2: result.num_tel2,
-            numCinPassport: result.cin_passport,
-            email: result.email
-          }
-          this.workflowFile.marque = result.marque;
-          this.workflowFile.model = result.model;
-          this.workflowFile.imei = this.myDevice.imei;
+          // GET rest of guarantee & FORMAT purchase_date
+          var v1 = new Date(this.dateFormat(new Date(this.myDevice.purchase_date), 1)).valueOf() - new Date().valueOf();
+          this.myDevice.purchase_date = this.dateFormat(new Date(this.myDevice.purchase_date));
+
+          this.myDevice.rest_guarantee = Math.round((v1) / (1000 * 60 * 60 * 24));
+
           this.deviceRequstInfo.isFound = true;
           this.createWorkflowFile = false;
+          this.invoice.shown = false;
+
         }
         else {
           this.deviceRequstInfo.haveMsg = true;
-          this.deviceRequstInfo.msg = "Not found device";
+          this.deviceRequstInfo.msg = data.msg;
           setTimeout(() => { this.deviceRequstInfo.haveMsg = false; }, 5000);
         }
       });
@@ -118,6 +101,7 @@ export class SearchComponent {
     this.createWorkflowFile = true;
     this.deviceRequstInfo.isFound = false;
   }
+
   addAccessoires() {
     this.toAddAccess.forEach((e: String) => {
       if (!this.workflowFile.Accessoires.includes(e)) {
@@ -147,21 +131,23 @@ export class SearchComponent {
   // INVOICE
   submitFile() {
     this.apiService
-      .createFicheIntervention(this.workflowFile.imei, {
-        accessoires: (this.workflowFile.Accessoires as Array<string>).join(","),
-        type_panne: (this.workflowFile.Panne as Array<string>).join(","),
-        terminal_pret: this.workflowFile.terminal,
+      .createFicheIntervention({
+        imei: this.myDevice.imei,
+        clientId: this.myDevice.client.cin,
+        panne: (this.workflowFile.Panne as Array<string>).join(","),
+        accessories: (this.workflowFile.Accessoires as Array<string>).join(","),
+        terminalPret: Number.parseInt(this.workflowFile.terminal),
         description: this.workflowFile.Description,
-        workflow: this.workflowFile.workflow
+        workflow: this.workflowFile.workflow,
       })
       .subscribe((data: any) => {
         console.log(data);
         this.invoice.id = data.insertId;
+        this.invoice.date = data.createdAt;
+        this.invoice.id = data.id;
       });
-
     this.createWorkflowFile = false;
     this.invoice.shown = true;
-    this.invoice.date = this.dateFormat(new Date());
   }
   PrintElem() {
     var mywindow = window.open('', 'PRINT', 'height=400,width=1000')!;
@@ -183,8 +169,12 @@ export class SearchComponent {
     return true;
   }
 
-  dateFormat(date: Date) {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  dateFormat(date: Date, add = 0) {
+    if (add == 0)
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    else
+      return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() + add}`;
+
   }
 
 }
