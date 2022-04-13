@@ -30,12 +30,12 @@
                                     </svg>
                                 </button>
                                 <ul *ngIf="item.subOpen"
-                                    class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50"
+                                    class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-400 rounded-md shadow-inner bg-gray-50"
                                     aria-label="submenu">
                                     <li *ngFor="let ie of item.sub"
-                                        class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 ">
+                                        class="px-2 py-1 bg-gray-200 hover:text-gray-800 ">
                                         <a class="w-full" [routerLink]="ie.link" 
-                                            [routerLinkActive]="['sidebarLinkActive']">{{ ie.name }}</a>
+                                            [routerLinkActive]="['text-black']">{{ ie.name }}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -3,9 +3,12 @@ import { NgModule } from '@angular/core'
 import { CommonModule, } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { FileUploadModule } from 'ng2-file-upload';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { ApiService } from './services/api.service';
 
 // COMPOENTS
@@ -15,18 +18,25 @@ import { SearchComponent } from './components/search.component';
 import { MainComponent } from './pages/main.component';
 import { NotFoundComponent } from './pages/notfound.component';
 import { SuiviReparateurComponent } from './components/suivi-reparateur.component';
+import { RecuReparateurComponent } from './components/recu-reparateur.component';
+import { ConsultInterComponent } from './components/consult-inter.component';
+import { ConsultSwapComponent } from './components/consult-swap.component';
+import { StockRouterComponent } from './components/stock-retour.component';
 
 @NgModule({
   declarations: [
     AppComponent, SearchComponent, LoginComponent, MainComponent, NotFoundComponent,
-    SuiviReparateurComponent,
+    SuiviReparateurComponent, RecuReparateurComponent, ConsultInterComponent, ConsultSwapComponent,
+    StockRouterComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule,
+    PdfViewerModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

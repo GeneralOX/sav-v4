@@ -1,10 +1,10 @@
 <div class="min-w-0 m-3 p-4 bg-white rounded-lg shadow-xs">
-    <h3>selectionner un reparateur externe</h3>
+    <h3>selectionner un reparateur <b>{{ workFlowType }}</b></h3>
     <select class="border-2 p-2 m-2">
         <option class="p-3"> One Tel </option>
     </select>
     <hr class="m-2" />
-    <h3>Liste des articles a expedier aux reparateurs externe</h3>
+    <h3>Liste des articles a expedier aux reparateurs  <b>{{ workFlowType }}</b></h3>
     <table class="w-full border-2 m-2 text-center">
         <tr>
             <th class="border-2"><input type="checkbox" (click)="selectAll()" /></th>
@@ -27,19 +27,19 @@
             <td class="border-2 text-sm p-1"> {{ item.device.imei }} </td>
             <td class="border-2 text-sm p-1"> {{ item.device.batteryId }} </td>
             <td class="border-2 text-sm p-1"> {{ item.device.supplier }}</td>
-            <td class="border-2 text-sm p-1"> NaN</td>
-            <td class="border-2 text-sm p-1"> {{ item.status }}</td>
+            <td class="border-2 text-sm p-1"> {{ item.intervention_status[0].status ?? "" }}</td>
+            <td class="border-2 text-sm p-1"> {{ item.intervention_status[0].obs ?? "" }}</td>
         </tr>
     </table>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end" *ngIf="invoiceList.length > 0">
         <button (click)="decharge()"
             class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-gray-600 border border-transparent rounded-lg active:bg-gray-700 focus:outline-none">
             Generate decharge</button>
     </div>
 </div>
 
-<div class="border-gray-200 border p-4 bg-white m-3">
+<div class="border-gray-200 border p-4 bg-white m-3" *ngIf="invoice.shown">
     <div class="absolute">
         <img src="/assets/logo.png" width="150" height="64" />
     </div>
@@ -74,7 +74,7 @@
             <td class="border-2 text-sm p-1"> {{ item.device.imei }} </td>
             <td class="border-2 text-sm p-1"> {{ item.device.batteryId }} </td>
             <td class="border-2 text-sm p-1"> {{ item.device.supplier }}</td>
-            <td class="border-2 text-sm p-1"> NaN</td>
+            <td class="border-2 text-sm p-1"> {{ item.intervention_status[0].status }}</td>
             <td class="border-2 text-sm p-1"> {{ item.status }}</td>
         </tr>
     </table>
