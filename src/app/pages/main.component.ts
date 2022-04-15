@@ -16,7 +16,7 @@ export class MainComponent {
     { name: "Consulter bon sav", link: "/consult/swap", haveSub: false },
 
     { name: "Consulter Assurance", link: "/consult/assurance", haveSub: false }, // NOT USE
-    { name: "Recherche Decharge", link: "/recherche/decharge", haveSub: false }, // NOT USE
+    { name: "Recherche Decharge", link: "/decharge", haveSub: false },
     {
       name: "Suivi point de collecte", haveSub: true, subOpen: false, sub: [
         { name: "Retour Entrepot Terminaux SWAP", link: ["/suivi/retour"] },

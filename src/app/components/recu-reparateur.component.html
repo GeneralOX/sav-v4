@@ -27,6 +27,13 @@
             <ng-template [ngIf]="selectedOption == 'Expertise avec terminal'">
                 <th class="border-2"><b>Insertion Expertise</b></th>
             </ng-template>
+            <ng-template [ngIf]="selectedOption == 'Devis sans terminal'">
+                <th class="border-2"><b>Insertion Devis</b></th>
+                <th class="border-2"><b>Montant</b></th>
+            </ng-template>
+            <ng-template [ngIf]="selectedOption == 'Expertise sans terminal'">
+                <th class="border-2"><b>Insertion Expertise</b></th>
+            </ng-template>
 
 
         </tr>
@@ -91,6 +98,22 @@
                 </td>
             </ng-template>
             <ng-template [ngIf]="selectedOption == 'Expertise avec terminal'">
+                <td class="border-2">
+                    <input type="file" [(ngModel)]="item.operation.pdfLink" />
+                </td>
+            </ng-template>
+            <ng-template [ngIf]="selectedOption == 'Devis sans terminal'">
+                <td class="border-2 text-sm p-1">
+                    <input type="file" (change)="selectFile($event)" />
+
+                    <!-- [(ngModel)]="" -->
+                </td>
+                <td class="border-2 text-sm p-1">
+                    <input type="text" class="border border-gray-300 rounded-md p-2"
+                        [(ngModel)]="item.operation.amount" />
+                </td>
+            </ng-template>
+            <ng-template [ngIf]="selectedOption == 'Expertise sans terminal'">
                 <td class="border-2">
                     <input type="file" [(ngModel)]="item.operation.pdfLink" />
                 </td>

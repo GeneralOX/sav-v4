@@ -119,7 +119,8 @@ export class ConsultInterComponent {
             this.invDetails.data = res.data;
         });
     }
-    canClose(s: string) {
+    canClose(s: string, e: String) {
+        if (e == "Cloturée") return false;
         switch (s) {
             case "Réparé":
                 return true;

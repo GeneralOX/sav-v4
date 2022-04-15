@@ -22,12 +22,13 @@ import { RecuReparateurComponent } from './components/recu-reparateur.component'
 import { ConsultInterComponent } from './components/consult-inter.component';
 import { ConsultSwapComponent } from './components/consult-swap.component';
 import { StockRouterComponent } from './components/stock-retour.component';
+import { DechargeComponent } from './components/decharge.component';
 
 @NgModule({
   declarations: [
     AppComponent, SearchComponent, LoginComponent, MainComponent, NotFoundComponent,
     SuiviReparateurComponent, RecuReparateurComponent, ConsultInterComponent, ConsultSwapComponent,
-    StockRouterComponent
+    StockRouterComponent, DechargeComponent
   ],
   imports: [
     CommonModule,

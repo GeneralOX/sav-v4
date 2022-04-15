@@ -239,7 +239,7 @@
                         </button>
                     </div>
                 </div>
-                <div *ngIf="!swap.screen1 && !swap.shownInvoice">
+                <div *ngIf="!swap.screen1 && !swap.showInvoice">
                     <p class="my-3">
                         <b>Material de Remplacement</b>
                     </p>
@@ -499,9 +499,9 @@
                         </td>
                         <td>
                             <select class="border-2 rounded-md p-2" [(ngModel)]="workflowFile.workflow">
-                                <option selected="selected" value="Reparateur Externe">Reparateur Externe</option>
-                                <option value="Reparateur Interne">Reparateur Interne</option>
-                                <option value="Workflow Normal">Workflow Normal</option>
+                                <option selected="selected" value="externe">Reparateur Externe</option>
+                                <option value="interne">Reparateur Interne</option>
+                                <option value="normal">Workflow Normal</option>
                             </select>
                         </td>
                     </tr>

@@ -1,4 +1,4 @@
-<div class="min-w-0 m-3 p-4 bg-white rounded-lg shadow-xs">
+<div class="min-w-0 m-3 p-4 bg-white rounded-lg shadow-xs" *ngIf="!invoice.shown">
     <h3>selectionner un reparateur <b>{{ workFlowType }}</b></h3>
     <select class="border-2 p-2 m-2">
         <option class="p-3"> One Tel </option>

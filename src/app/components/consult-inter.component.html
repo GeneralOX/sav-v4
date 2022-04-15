@@ -101,7 +101,7 @@
             </ng-template>
         </table>
         <div class="mt-3">
-            <button *ngIf="canClose(invDetails.data[0] ? invDetails.data[0].obs : '')" style="width: 200px;"
+            <button *ngIf="canClose(invDetails.data[0] ? invDetails.data[0].obs : '', invDetails.status )" style="width: 200px;"
                 (click)="closeInvoice()"
                 class="mr-1 px-4 py-2 text-sm font-medium text-white  bg-gray-500 border border-gray-600 rounded-lg active:bg-gray-700">
                 Cloturer fiche</button>

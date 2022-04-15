@@ -62,6 +62,10 @@ export class ApiService {
     createDischarge(data: any) {
         return this.http.post(`${this.apiUrl}/discharge/create`, data);
     }
+    getDecharge(id: any){
+        return this.http.get(`${this.apiUrl}/discharge/search?id=${id}`);
+
+    }
 
     // CLIENT
     setavailableClient(data: any) {

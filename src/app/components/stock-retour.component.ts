@@ -23,8 +23,8 @@ export class StockRouterComponent {
     }
 
     constructor(private apiService: ApiService) {
-        var user = JSON.parse(localStorage.getItem("user")!) ?? { id: 1, name: "shop", prenom: "shop" }
-        this.app.shop = `${user.nom} ${user.prenom}`;
+        var user = JSON.parse(localStorage.getItem("user")!)
+        this.app.shop = `${user.firstName} ${user.lastName}`;
         this.app.shopid = user.id ?? 1;
         this.search();
     }
@@ -46,7 +46,7 @@ export class StockRouterComponent {
         this.apiService.createSwapDischarge({ userid: this.app.shopid, dechargeItems: interventions }).subscribe((res: any) => {
             this.app.invoice = {
                 id: res.invoice.id,
-                date: res.invoice.createdAt
+                date: res.invoice.createdAt.split('T')[0]
             };
             this.app.showScreen2();
         });

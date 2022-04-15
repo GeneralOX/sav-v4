@@ -23,7 +23,8 @@ export class SuiviReparateurComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute) {
         var user = JSON.parse(localStorage.getItem("user")!)
-        this.invoice.shop = `${user.nom} ${user.prenom}`;
+        console.log(user)
+        this.invoice.shop = `${user.firstName} ${user.lastName}`;
         this.invoice.shopid = user.id;
     }
 
@@ -56,7 +57,10 @@ export class SuiviReparateurComponent implements OnInit {
         }
         console.log(data);
 
-        this.apiService.createDischarge(data).subscribe();
+        this.apiService.createDischarge(data).subscribe((res: any) => {
+            this.invoice.id = res.id;
+            this.invoice.date = res.createdAt.split("T")[0];
+        });
         this.invoice.shown = true;
     }
 }
