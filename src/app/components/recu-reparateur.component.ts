@@ -61,6 +61,7 @@ export class RecuReparateurComponent implements OnInit {
     selectFile(event: any): void {
         this.selectedFiles = event.target.files;
     }
+    
     upload(_itm: any): void {
         if (this.selectedFiles) {
             const file: File | null = this.selectedFiles.item(0);
@@ -70,6 +71,13 @@ export class RecuReparateurComponent implements OnInit {
                     this.invoiceList = this.invoiceList.filter((v) => v.id != _itm.id ? v : null);
                 });
             }
+            else {
+                console.log("error with file")
+            }
+        }
+        else{
+            console.log("not selected file")
+
         }
     }
     setInvocieStatus(item: any) {
@@ -78,11 +86,17 @@ export class RecuReparateurComponent implements OnInit {
             obs: this.selectedOption,
             status: "En attente récupération client suite réparateur externe",
             shop: this.opShop,
-            operation: item.operation
+            operation: item.operation,
+            ispdfClosed: false,
         };
         if (this.selectedOption == "Devis avec terminal" || this.selectedOption == "Devis sans terminal") {
             _itm.status = "En attente de payment devis";
             _itm.obs = "En attente de payment devis";
+            console.log(_itm);
+            this.upload(_itm);
+        } else if (this.selectedOption == "Expertise avec terminal" || this.selectedOption == "Expertise sans terminal") {
+            _itm.status = "En attente de validation expertise";
+            _itm.obs = "En attente de validation expertise";
             console.log(_itm);
             this.upload(_itm);
         } else {

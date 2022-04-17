@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConsultInterComponent } from './components/consult-inter.component';
 import { ConsultSwapComponent } from './components/consult-swap.component';
 import { DechargeComponent } from './components/decharge.component';
+import { NotifWaitComponent } from './components/notif-wait.component';
 import { RecuReparateurComponent } from './components/recu-reparateur.component';
 import { SearchComponent } from './components/search.component';
 import { StockRouterComponent } from './components/stock-retour.component';
@@ -24,15 +25,16 @@ const routes: Routes = [
       { path: '', component: WelcomeComponent },
       { path: 'search', component: SearchComponent },
       { path: 'decharge', component: DechargeComponent },
- 
+
       { path: 'consult/intervention', component: ConsultInterComponent },
       { path: 'consult/swap', component: ConsultSwapComponent },
-      
+
       { path: 'suivi/retour', component: StockRouterComponent },
       { path: 'suivi/reparateur/:id', component: SuiviReparateurComponent },
- 
+
       { path: 'recu/reparateur/:id', component: RecuReparateurComponent },
 
+      { path: 'notification/waiting', component: NotifWaitComponent },
       { path: '404', component: NotFoundComponent }
     ]
   },

@@ -51,4 +51,23 @@ export class StockRouterComponent {
             this.app.showScreen2();
         });
     }
+    PrintElem() {
+        var mywindow = window.open('', 'PRINT', 'height=400,width=1000')!;
+
+        mywindow.document.write('<html><head><title>' + document.title + '</title>');
+        mywindow.document.write('<link rel="stylesheet" href="styles.css">');
+        mywindow.document.write('</head><body >');
+        mywindow.document.write(document.getElementById("decharge")!.innerHTML);
+        mywindow.document.write('</body></html>');
+
+        mywindow.document.close(); // necessary for IE >= 10
+        mywindow.focus(); // necessary for IE >= 10*/
+        setTimeout(() => {
+            mywindow.print();
+            mywindow.close();
+        }, 1000);
+
+
+        return true;
+    }
 }

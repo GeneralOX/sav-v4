@@ -147,7 +147,8 @@ export class ConsultInterComponent {
             obs: "En cours de réparation",
             status: "En Attente Envoi réparateur externe",
             local: this.availableClient.shop,
-            disch: true
+            disch: true,
+            ispdfClosed: true,
         };
         this.apiService.setEtatIntervention(_itm).subscribe((res) => {
             this.getInvoiceDetails(_itm.id, _itm.status);
@@ -159,7 +160,8 @@ export class ConsultInterComponent {
             obs: "",
             status: "En attente récupération boutique via réparateur externe",
             local: this.availableClient.shop,
-            outStore: true
+            outStore: true,
+            ispdfClosed: true,
         };
         _itm.obs = this.invDetails.data[0].obs == "En attente de payment devis" ? "Devis refusé" : "Expertise refusé";
 

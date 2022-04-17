@@ -34,7 +34,11 @@ export class MainComponent {
         { name: "Recu reparateur externe", link: ["/recu/reparateur/externe"] },
       ]
     },
-    { name: "Notification", link: "/notification", haveSub: false }, // NOT USE 
+    {
+      name: "Notification", link: "/notification", haveSub: true, sub: [
+        { name: "Notification sur les devis et exertises en attente de traitement", link: ['/notification/waiting'] }
+      ]
+    }, // NOT USE 
     { name: "Alerts", link: "/alerts", haveSub: false }, // NOT USE
   ];
   constructor(private router: Router) { }

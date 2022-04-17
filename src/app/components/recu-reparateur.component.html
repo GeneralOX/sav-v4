@@ -99,14 +99,12 @@
             </ng-template>
             <ng-template [ngIf]="selectedOption == 'Expertise avec terminal'">
                 <td class="border-2">
-                    <input type="file" [(ngModel)]="item.operation.pdfLink" />
+                    <input type="file" [(ngModel)]="item.operation.pdfLink" (change)="selectFile($event)" />
                 </td>
             </ng-template>
             <ng-template [ngIf]="selectedOption == 'Devis sans terminal'">
                 <td class="border-2 text-sm p-1">
                     <input type="file" (change)="selectFile($event)" />
-
-                    <!-- [(ngModel)]="" -->
                 </td>
                 <td class="border-2 text-sm p-1">
                     <input type="text" class="border border-gray-300 rounded-md p-2"
@@ -115,7 +113,7 @@
             </ng-template>
             <ng-template [ngIf]="selectedOption == 'Expertise sans terminal'">
                 <td class="border-2">
-                    <input type="file" [(ngModel)]="item.operation.pdfLink" />
+                    <input type="file" [(ngModel)]="item.operation.pdfLink" (change)="selectFile($event)" />
                 </td>
             </ng-template>
         </tr>

@@ -86,4 +86,12 @@ export class ApiService {
         });
         return this.http.request(req);
     }
+
+    // NOTIFICATION
+    getwaitednotif(data: any){
+        return this.http.post(`${this.apiUrl}/notification/waiting`, data);
+    }
+    closePdfNdNewStatus(data: any){
+        return this.http.post(`${this.apiUrl}/notification/closePDF`, data);
+    }
 }

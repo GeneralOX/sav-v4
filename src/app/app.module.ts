@@ -23,12 +23,13 @@ import { ConsultInterComponent } from './components/consult-inter.component';
 import { ConsultSwapComponent } from './components/consult-swap.component';
 import { StockRouterComponent } from './components/stock-retour.component';
 import { DechargeComponent } from './components/decharge.component';
+import { NotifWaitComponent } from './components/notif-wait.component';
 
 @NgModule({
   declarations: [
     AppComponent, SearchComponent, LoginComponent, MainComponent, NotFoundComponent,
-    SuiviReparateurComponent, RecuReparateurComponent, ConsultInterComponent, ConsultSwapComponent,
-    StockRouterComponent, DechargeComponent
+    SuiviReparateurComponent, RecuReparateurComponent, ConsultInterComponent,
+    ConsultSwapComponent, StockRouterComponent, DechargeComponent, NotifWaitComponent
   ],
   imports: [
     CommonModule,
