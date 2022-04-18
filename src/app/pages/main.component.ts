@@ -23,7 +23,13 @@ export class MainComponent {
 
       ]
     },
-    { name: "Go For Swap", link: "/goforswap", haveSub: false }, // NOT USE 
+    {
+      name: "Go For Swap", haveSub: true, subOpen: false, sub: [
+        { name: "Liste des Terminaux", link: ["/swap/items"] },
+        { name: "Liste des Terminaux Assurés", link: ["/swap/asured-items"] },
+
+      ]
+    },
     { name: "Suivi Fiche Sinistre", link: "/suivi/sinifile", haveSub: false }, // NOT USE
 
     {
@@ -35,7 +41,7 @@ export class MainComponent {
       ]
     },
     {
-      name: "Notification", link: "/notification", haveSub: true, sub: [
+      name: "Notification", haveSub: true, sub: [
         { name: "Notification sur les devis et exertises en attente de traitement", link: ['/notification/waiting'] }
       ]
     }, // NOT USE 

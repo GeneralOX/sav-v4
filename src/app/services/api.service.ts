@@ -62,7 +62,7 @@ export class ApiService {
     createDischarge(data: any) {
         return this.http.post(`${this.apiUrl}/discharge/create`, data);
     }
-    getDecharge(id: any){
+    getDecharge(id: any) {
         return this.http.get(`${this.apiUrl}/discharge/search?id=${id}`);
 
     }
@@ -88,10 +88,19 @@ export class ApiService {
     }
 
     // NOTIFICATION
-    getwaitednotif(data: any){
+    getwaitednotif(data: any) {
         return this.http.post(`${this.apiUrl}/notification/waiting`, data);
     }
-    closePdfNdNewStatus(data: any){
+    closePdfNdNewStatus(data: any) {
         return this.http.post(`${this.apiUrl}/notification/closePDF`, data);
     }
+
+    // SWAP
+    getSwapItems() {
+        return this.http.get(`${this.apiUrl}/swap/items`);
+    }
+    swapedItem(data: any) {
+        return this.http.post(`${this.apiUrl}/swap/swaped`, data);
+    }
+
 }

@@ -8,6 +8,7 @@ import { RecuReparateurComponent } from './components/recu-reparateur.component'
 import { SearchComponent } from './components/search.component';
 import { StockRouterComponent } from './components/stock-retour.component';
 import { SuiviReparateurComponent } from './components/suivi-reparateur.component';
+import { SwapComponent } from './components/swap.component';
 import { WelcomeComponent } from './components/welcome.component';
 import { IsSignedInGuard } from './is-signed-in.guard';
 import { LoginComponent } from './pages/login.component';
@@ -33,6 +34,8 @@ const routes: Routes = [
       { path: 'suivi/reparateur/:id', component: SuiviReparateurComponent },
 
       { path: 'recu/reparateur/:id', component: RecuReparateurComponent },
+
+      { path: 'swap/items', component: SwapComponent },
 
       { path: 'notification/waiting', component: NotifWaitComponent },
       { path: '404', component: NotFoundComponent }
